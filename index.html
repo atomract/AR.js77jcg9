@@ -35,7 +35,6 @@
                 cursor="fuse: false; rayOrigin: mouse;"
                 id="markerA"
             >
-                <a-entity rotation="0 90 0">
                     <a-entity
                         id="bowser-model"
                         scale="1 1 1"
@@ -43,12 +42,17 @@
                         class="clickable"
                         gesture-handler
                     ></a-entity>
-                </a-entity>
             </a-marker>
 
             <a-entity camera></a-entity>
             <a-light type="ambient" color="#888"></a-light>
             <a-light type="directional" color="#FFF" intensity="0.5" position="-1 1 1"></a-light>
         </a-scene>
+        <script>
+            var model = document.querySelector('#bowser-model');
+            model.addEventListener('model-loaded', function(){
+                model.object3D.rotation.y = THREE.Math.degToRad(90);
+            });
+        </script>
     </body>
 </html>
