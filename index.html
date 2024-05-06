@@ -9,6 +9,7 @@
     </head>
 
     <body style="margin: 0; overflow: hidden;">
+
         <a-scene
             vr-mode-ui="enabled: false;"
             loading-screen="enabled: false;"
@@ -50,6 +51,7 @@
             <a-light type="ambient" color="#888"></a-light>
             <a-light type="directional" color="#FFF" intensity="0.5" position="-1 1 1"></a-light>
         </a-scene>
+        <audio id="background-audio" src="assets/audio.wav" autoplay loop></audio>
         <script>
             var model = document.querySelector('#bowser-model');
             model.addEventListener('model-loaded', function(){
