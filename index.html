@@ -38,11 +38,13 @@
             >
                     <a-entity
                         id="bowser-model"
-                        scale="2 2 2"
+                        scale="2.5 2.15 2.5"
                         gltf-model="#animated-asset"
                         class="clickable"
                         gesture-handler
-                        position="0 -5 0"
+                        position="0 -9 0"
+                        sound="src: url(assets/audio.wav); loop: true"
+
 
                     ></a-entity>
             </a-marker>
@@ -51,13 +53,21 @@
             <a-light type="ambient" color="#888"></a-light>
             <a-light type="directional" color="#FFF" intensity="0.5" position="-1 1 1"></a-light>
         </a-scene>
-        <audio id="background-audio" src="assets/audio.wav" autoplay loop></audio>
+        <!-- <audio id="background-audio" src="assets/audio.wav" autoplay loop></audio> -->
         <script>
             var model = document.querySelector('#bowser-model');
+            var marker = document.querySelector('#animated-marker');
+            
             model.addEventListener('model-loaded', function(){
-                // model.object3D.rotation.z = THREE.Math.degToRad(90);
                 model.object3D.rotation.x = THREE.Math.degToRad(-90);
-                // model.object3D.rotation.y = THREE.Math.degToRad(90);
+            });
+        
+            marker.addEventListener('markerFound', function() {
+                model.components.sound.playSound();
+            });
+            
+            marker.addEventListener('markerLost', function() {
+                model.components.sound.pauseSound();
             });
         </script>
     </body>
